@@ -1,0 +1,11 @@
+E:\C++_Scripts\ArrayReal\Micha-C#\myApp\bin\Debug\netcoreapp2.2\myApp.deps.json
+E:\C++_Scripts\ArrayReal\Micha-C#\myApp\bin\Debug\netcoreapp2.2\myApp.runtimeconfig.json
+E:\C++_Scripts\ArrayReal\Micha-C#\myApp\bin\Debug\netcoreapp2.2\myApp.runtimeconfig.dev.json
+E:\C++_Scripts\ArrayReal\Micha-C#\myApp\bin\Debug\netcoreapp2.2\myApp.dll
+E:\C++_Scripts\ArrayReal\Micha-C#\myApp\bin\Debug\netcoreapp2.2\myApp.pdb
+E:\C++_Scripts\ArrayReal\Micha-C#\myApp\obj\Debug\netcoreapp2.2\myApp.csprojAssemblyReference.cache
+E:\C++_Scripts\ArrayReal\Micha-C#\myApp\obj\Debug\netcoreapp2.2\myApp.csproj.CoreCompileInputs.cache
+E:\C++_Scripts\ArrayReal\Micha-C#\myApp\obj\Debug\netcoreapp2.2\myApp.AssemblyInfoInputs.cache
+E:\C++_Scripts\ArrayReal\Micha-C#\myApp\obj\Debug\netcoreapp2.2\myApp.AssemblyInfo.cs
+E:\C++_Scripts\ArrayReal\Micha-C#\myApp\obj\Debug\netcoreapp2.2\myApp.dll
+E:\C++_Scripts\ArrayReal\Micha-C#\myApp\obj\Debug\netcoreapp2.2\myApp.pdb

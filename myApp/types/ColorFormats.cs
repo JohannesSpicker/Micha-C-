@@ -10,37 +10,39 @@ namespace PR250.Types {
 
     public static class BitConversion {
 
-      public static uint RGBA (byte r, byte g, byte b, byte a) {
-        return 0; //TODO
-      }
+      public static uint RGBA (byte r, byte g, byte b, byte a) => ((uint)r << 0) | ((uint)g << 8) | ((uint)b << 16) | ((uint)a << 24);
       public static void ExtractRGBA (uint rgba, out byte r, out byte g, out byte b, out byte a) {
-        r = 0; //TODO
-        g = 0; //TODO
-        b = 0; //TODO
-        a = 0; //TODO
+        // 0b11111111 == 0xFF == 255
+        // 0xFF == 0x000000FF
+        // 0xFF00 == 0x0000FF00
+        r = (byte) ((rgba >> 0) & 0xFF);
+        g = (byte) ((rgba >> 8) & 0xFF);  // g = (byte) ((rgba & 0xFF00) >> 8);
+        b = (byte) ((rgba >> 16) & 0xFF);
+        a = (byte) ((rgba >> 24) & 0xFF); // a = (byte) ((rgba & 0xFF000000) >> 24);
       }
 
       public static uint ARGB (byte a, byte r, byte g, byte b) {
-        return 0; //TODO
+        return ((uint)r << 8) | ((uint)g << 16) | ((uint)b << 24) | ((uint)a << 0);
       }
       public static void ExtractARGB (uint argb, out byte a, out byte r, out byte g, out byte b) {
-        a = 0; //TODO
-        r = 0; //TODO
-        g = 0; //TODO
-        b = 0; //TODO
+        a = (byte) ((argb >> 0) & 0xFF); // a = (byte) ((argb >> 0) & 0x00_00_00_0FF);
+        r = (byte) ((argb >> 8) & 0xFF);
+        g = (byte) ((argb >> 16) & 0xFF);
+        b = (byte) ((argb >> 24) & 0xFF);
       }
     }
 
     //-------------------------------------------------------------------------
     // Struct based Conversion
 
-    //TODO
+
+    [StructLayout(LayoutKind.Explicit)]
     public struct RGBA {
-      /*TODO*/ public uint Value;
-      /*TODO*/ public byte R;
-      /*TODO*/ public byte G;
-      /*TODO*/ public byte B;
-      /*TODO*/ public byte A;
+      [FieldOffset(0)] public uint Value;
+      [FieldOffset(0)] public byte R;
+      [FieldOffset(1)] public byte G;
+      [FieldOffset(2)] public byte B;
+      [FieldOffset(3)] public byte A;
 
       public RGBA (byte r, byte g, byte b, byte a) : this () {
         R = r;
@@ -55,13 +57,13 @@ namespace PR250.Types {
       override public string ToString () { return string.Format ("(R={0,3},G={1,3},B={2,3},A={3,3}) = {4:X}", R, G, B, A, Value); }
     }
 
-    //TODO
+    [StructLayout(LayoutKind.Explicit)]
     public struct ARGB {
-      /*TODO*/ public uint Value;
-      /*TODO*/ public byte A;
-      /*TODO*/ public byte R;
-      /*TODO*/ public byte G;
-      /*TODO*/ public byte B;
+      [FieldOffset(0)] public uint Value;
+      [FieldOffset(0)] public byte A;
+      [FieldOffset(1)] public byte R;
+      [FieldOffset(2)] public byte G;
+      [FieldOffset(3)] public byte B;
 
       public ARGB (byte a, byte r, byte g, byte b) : this () {
         A = a;

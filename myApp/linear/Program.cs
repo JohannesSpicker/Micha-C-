@@ -122,6 +122,5 @@ namespace PR250.Linear {
 
       Console.WriteLine($"TestMiddle|DynamicCircularArray|{n}: {TestDCA(new DynamicCircularArray<int>(), n)}");
     }
-
   }
 }

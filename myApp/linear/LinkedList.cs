@@ -14,6 +14,11 @@ namespace PR250.Linear {
 
       //---------------------------------------------------------------------
 
+      public Node Previous { get; internal set; }
+      public Node Next { get; internal set; }
+
+      //---------------------------------------------------------------------
+
       internal Node (LinkedList<T> l, T elem) {
         list = l;
         Item = elem;
@@ -21,10 +26,6 @@ namespace PR250.Linear {
 
       //---------------------------------------------------------------------
 
-      public Node Previous { get; internal set; }
-      public Node Next { get; internal set; }
-
-      //---------------------------------------------------------------------
       public T Delete () {
         if (Previous != null) {
           Previous.Next = Next;
@@ -62,6 +63,8 @@ namespace PR250.Linear {
 
     public Node FirstNode { get; private set; }
     public Node LastNode { get; private set; }
+
+    public T this[int index] => GetNodeAt(index).Item;
 
     public Node GetNodeAt (int index) {
       if (index * 2 < Length) {
@@ -116,34 +119,34 @@ namespace PR250.Linear {
 
     //-----------------------------------------------------------------------    
 
-    int IStack<T>.Size => default; //TODO
+    int IStack<T>.Size => Length; 
 
-    void IStack<T>.Push (T elem) {} //TODO
+    void IStack<T>.Push (T elem) => InsertAfter(LastNode, elem);
 
-    T IStack<T>.Pop () => default; //TODO
+    T IStack<T>.Pop () => LastNode.Delete();
 
     //-----------------------------------------------------------------------+
 
-    int IQueue<T>.Size => default; //TODO
+    int IQueue<T>.Size => Length;
 
-    void IQueue<T>.Enqueue (T elem) {} //TODO
+    void IQueue<T>.Enqueue (T elem) => InsertAfter(LastNode, elem);
 
-    T IQueue<T>.Dequeue () => default; //TODO
+    T IQueue<T>.Dequeue () => FirstNode.Delete();
 
     //-----------------------------------------------------------------------
 
-    int IDeque<T>.Size => default; //TODO
+    int IDeque<T>.Size => Length; //TODO
 
-    public T First => default; //TODO
-    public T Last => default; //TODO
+    public T First => FirstNode.Item;
+    public T Last => LastNode.Item;
 
-    public void Prepend (T elem) {} //TODO
+    public void Prepend (T elem) => InsertBefore(FirstNode, elem);
 
-    public void Append (T elem) {} //TODO
+    public void Append (T elem) => InsertAfter(LastNode, elem);
 
-    public T RemoveFirst () => default; //TODO
+    public T RemoveFirst () => FirstNode.Delete();
 
-    public T RemoveLast () => default; //TODO
+    public T RemoveLast () => LastNode.Delete();
 
     //-----------------------------------------------------------------------
 

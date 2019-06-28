@@ -23,37 +23,64 @@ namespace PR250.Linear {
 
     public void InsertAt (int index, T elem) {
       EnsureCapacity ();
-      //TODO
+      elements[index] = elem;
+
+      for (int i = Length; index < i; i--)
+      {
+          this[i] = this[i-1];
+      }
+
+      this[index] = elem;
+      Length++;
     }
 
     public T RemoveAt (int index) {
-      //TODO
-      return default;
+      var output = this[index];
+
+      Length--;
+      for (int i = index; i < Length; i++)
+      {
+          this[i] = this[i+1];
+      }
+
+      return output;
     }
 
     private void EnsureCapacity () {
-      //TODO
+      if(Length < Capacity)
+      {
+        return;
+      } 
+      
+      var temp = new T[1 << Length];
+
+      for (int i = 0; i < Length; i++)
+      {
+          temp[i] = this[i];
+      }
+
+      elements = temp;
     }
 
     //---------------------------------------------------------------------
     // Stack
 
-    int IStack<T>.Size => default; //TODO
+    int IStack<T>.Size => Length;
 
-    public T Last => default; //TODO
+    public T Last => this[Length - 1];
 
-    void IStack<T>.Push (T elem) {} //TODO
+    void IStack<T>.Push (T elem) => InsertAt(Length, elem);
 
-    T IStack<T>.Pop () => default; //TODO
+    T IStack<T>.Pop () => RemoveAt(Length - 1);
 
     //---------------------------------------------------------------------
     // Deque - partial
 
-    public T First => default; //TODO
+    public T First => this[0];
 
-    public void Append (T elem) {} //TODO
+    public void Append (T elem) => InsertAt(Length, elem);
 
-    public T RemoveLast () => default; //TODO
+    public T RemoveLast () => RemoveAt(Length - 1);
 
     //---------------------------------------------------------------------
 
